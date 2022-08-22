@@ -10,7 +10,7 @@ export interface Iuser extends Document{
     createdOn: Date;
     userRole:string;
 }
-enum userRoles {
+export enum userRoles {
     VISITOR = "visitor",
     LANDLORD = "landlord",
 }

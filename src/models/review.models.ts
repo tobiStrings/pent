@@ -3,21 +3,17 @@ import { Url } from "url";
 
 export interface Ireview extends Document{
     reviewId:string;
-    text: string;
     vidUrl:Url;
     img:Url;
-    landlord:string;
-    environment:string;
+    landlordId:string;
+    environment:Number;
     quality:Number;
-    helpful:boolean
+    helpful:boolean[]
+    createdOn:Date
 }
 
 const reviewSchema = new Schema<Ireview>({
     reviewId:{
-        type: String,
-        required: true,
-    },
-    text:{
         type: String,
         required: true,
     },
@@ -29,21 +25,28 @@ const reviewSchema = new Schema<Ireview>({
         type: String,
         required: false,
     },
-    landlord:{
+    landlordId:{
         type: String,
         required: true,
     },
     environment:{
-        type: String,
+        type: Number,
         required: true,
+        max:10,
     },
     quality:{
         type: Number,
         required: true,
+        max:10,
     },
     helpful:{
-        type:Boolean,
+        type:[],
+        required:false,
+    },
+    createdOn:{
+        type:Date,
         required:true,
+        default:Date.now(),
     }
 })
 
